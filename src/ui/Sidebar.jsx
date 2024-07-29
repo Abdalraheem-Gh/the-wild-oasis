@@ -10,7 +10,7 @@ const StyledSidebar=styled.aside`
     flex-direction: column;
     gap: 3.2rem;
 `
-function Sidebar() {
+function SideBar() {
     return (
         <StyledSidebar>
 <Logo />
@@ -19,4 +19,4 @@ function Sidebar() {
     )
 }
 
-export default Sidebar
+export default SideBar
