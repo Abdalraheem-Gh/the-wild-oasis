@@ -8,6 +8,9 @@ const StyledTable = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
+  @media (max-width:768px){
+    overflow: scroll;
+  }
 `;
 
 const CommonRow = styled.div`

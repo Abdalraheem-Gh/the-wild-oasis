@@ -5,7 +5,6 @@ import Header from "./Header"
 import Sidebar from "./Sidebar"
 import styled from "styled-components"
 import SidebarDropdown from "./SidebarDropdown"
-import { DropdownProvider } from "../context/DropdownContext"
 
 const StyledAppLayout=styled.div`
     display: grid;
@@ -15,7 +14,6 @@ const StyledAppLayout=styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns:1fr;
-
   }
 `
 
@@ -25,7 +23,6 @@ const Main=styled.main`
     overflow:scroll;
     @media (max-width: 768px) {
        padding:2rem 2.4rem 3.2rem;
-
   }
 `
 
@@ -38,7 +35,6 @@ const Container=styled.div`
 `
 function AppLayout() {
     return (
-        <DropdownProvider>
         <StyledAppLayout>
             <Header/>
             <Sidebar/>
@@ -49,7 +45,6 @@ function AppLayout() {
                 </Container>
             </Main>
         </StyledAppLayout>
-        </DropdownProvider>
     )
 }
 

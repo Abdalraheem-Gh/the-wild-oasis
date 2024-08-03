@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { HiOutlineMenu } from 'react-icons/hi';
 import MainNav from './MainNav';
 import { useOutsideClick } from '../hooks/useOutsideClick';
-import { useDropdown } from '../context/DropdownContext';
+import {useDropdown}  from '../context/DropdownContext';
 
 const DropdownContainer = styled.div`
     display: none;

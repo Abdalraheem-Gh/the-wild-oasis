@@ -14,11 +14,18 @@ import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 
 const StyledBookingDataBox = styled.section`
   /* Box */
+
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
 
   overflow: hidden;
+  @media (max-width:768px) {
+    overflow: scroll;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+  }
 `;
 
 const Header = styled.header`
@@ -30,7 +37,11 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width:768px) {
+    font-size: 1rem;
+    font-weight: 300;
 
+  }
   svg {
     height: 3.2rem;
     width: 3.2rem;
@@ -42,17 +53,31 @@ const Header = styled.header`
     gap: 1.6rem;
     font-weight: 600;
     font-size: 1.8rem;
+    @media (max-width:768px) {
+    font-size: 1rem;
+    font-weight: 400;
+
+  }
   }
 
   & span {
     font-family: "Sono";
     font-size: 2rem;
     margin-left: 4px;
+    @media (max-width:768px) {
+    font-size: 1rem;
+    margin-left: 2px;
+
+  }
   }
 `;
 
 const Section = styled.section`
   padding: 3.2rem 4rem 1.2rem;
+  @media (max-width:768px) {
+    padding: 1.6rem 2rem 0.7rem;
+
+  }
 `;
 
 const Guest = styled.div`
@@ -61,7 +86,11 @@ const Guest = styled.div`
   gap: 1.2rem;
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
-
+  @media (max-width:768px) {
+    padding: 0.8rem 1.6rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
   & p:first-of-type {
     font-weight: 500;
     color: var(--color-grey-700);
@@ -75,6 +104,12 @@ const Price = styled.div`
   padding: 1.6rem 3.2rem;
   border-radius: var(--border-radius-sm);
   margin-top: 2.4rem;
+  @media (max-width:768px) {
+    padding: 0.8rem 1.6rem;
+    margin-top: 1.7rem;
+        font-size: 1.2rem;
+  
+  }
 
   background-color: ${(props) =>
     props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
@@ -85,6 +120,11 @@ const Price = styled.div`
     text-transform: uppercase;
     font-size: 1.4rem;
     font-weight: 600;
+    @media (max-width:768px) {
+  font-size: 0.7rem;
+  font-weight: 400;
+
+  }
   }
 
   svg {
@@ -100,6 +140,8 @@ const Footer = styled.footer`
   color: var(--color-grey-500);
   text-align: right;
 `;
+
+
 
 // A purely presentational component
 function BookingDataBox({ booking }) {

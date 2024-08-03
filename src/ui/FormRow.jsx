@@ -7,6 +7,11 @@ const StyledFormRow = styled.div`
   gap: 2.4rem;
 
   padding: 1.2rem 0;
+@media (max-width:768px) {
+  grid-template-columns:1fr 1fr;
+  gap: 1.5rem;
+  padding: 1rem 1.2rem;
+}
 
   &:first-child {
     padding-top: 0;
@@ -24,11 +29,17 @@ const StyledFormRow = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 1.2rem;
+    @media (max-width:768px) {
+      gap: 1rem;
+    }
   }
 `;
 
 const Label = styled.label`
   font-weight: 500;
+  @media (max-width:768px) {
+    font-weight: 300;
+  }
 `;
 
 const Error = styled.span`

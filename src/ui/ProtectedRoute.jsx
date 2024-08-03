@@ -30,7 +30,7 @@ if(!isAuthenticated && !isLoading) navigate('/login')
         </FullPage>
     )
     //4- If there is a user,render the app
-if(isAuthenticated) return children
+    return isAuthenticated ? children : null;
 }
 
 export default ProtectedRoute

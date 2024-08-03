@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Dashboard from "./pages/Dashboard";
 import Bookings from "./pages/Bookings";
@@ -16,6 +17,7 @@ import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { DarkModeProvider } from "./context/DarkModeContext";
+import { DropdownProvider } from "./context/DropdownContext";
 
 const queryClient=new QueryClient({
   defaultOptions:{
@@ -28,7 +30,8 @@ const queryClient=new QueryClient({
 function App() {
   return (
 
-    <DarkModeProvider >
+<DarkModeProvider >
+
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false}/>
     <GlobalStyles/>
@@ -36,7 +39,9 @@ function App() {
       <Routes>
         <Route element={
           <ProtectedRoute>
+            <DropdownProvider>
             <AppLayout/>
+            </DropdownProvider>
           </ProtectedRoute>
                         }>
       <Route index element={<Navigate replace to='dashboard' />}/>

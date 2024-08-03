@@ -4,13 +4,18 @@ import { HiOutlineBanknotes } from 'react-icons/hi2';
 import { formatCurrency } from '../../utils/helpers';
 import styled from 'styled-components';
 
+
 const StyledFlexStat = styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+gap: 1.4rem;
 @media (max-width: 768px){
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: 1fr auto;
     gap: 1.2rem;
 }
+
 `
 
 function Stats({bookings,confirmedStays,numDays,cabinCount}) {
@@ -29,7 +34,6 @@ function Stats({bookings,confirmedStays,numDays,cabinCount}) {
          <Stat title='Sales' color='green' icon={<HiOutlineBanknotes/>} value={formatCurrency(sales)}/>   
          <Stat title='Check ins' color='indigo' icon={<HiOutlineCalendar/>} value={checkins}/>   
          <Stat title='Occupancy rate' color='yellow' icon={<HiOutlineChartBar   />} value={Math.round(occupation*100)+'%'}/>   
-  
          </StyledFlexStat>
     )
 }

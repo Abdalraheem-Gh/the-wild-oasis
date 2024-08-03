@@ -7,16 +7,28 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    padding: 0.2rem 0.4rem;
+}
   `,
   medium: css`
     font-size: 1.4rem;
     padding: 1.2rem 1.6rem;
     font-weight: 500;
+    @media (max-width: 768px) {
+      font-size: 0.7rem;
+      padding: 0.6rem 0.8rem;
+}
   `,
   large: css`
     font-size: 1.6rem;
     padding: 1.2rem 2.4rem;
     font-weight: 500;
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      padding: 0.7rem 1.7rem;
+}
   `,
 };
 
@@ -55,6 +67,7 @@ const Button=styled.button`
 
 ${(props)=>sizes[props.size]}
 ${(props)=>variations[props.variation]}
+
 `
 Button.defaultProps={
   variation:'primary',
