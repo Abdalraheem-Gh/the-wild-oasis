@@ -12,6 +12,20 @@ const StyledStat = styled.div`
   grid-template-rows: auto auto;
   column-gap: 1.6rem;
   row-gap: 0.4rem;
+
+  @media (max-width: 768px){
+    /* display: grid; */
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns:1fr auto; */
+    /* grid-template-columns: repeat(4, 1fr); */
+    /* grid-template-rows:1.5rem auto; */
+    /* grid-auto-flow: row; */
+    padding: 0.8rem ;
+    column-gap: 0.8rem;
+    row-gap: 0.2rem;
+}
+
 `;
 
 const Icon = styled.div`
@@ -21,7 +35,7 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
   /* Make these dynamic, based on the received prop */
   background-color: var(--color-${(props) => props.color}-100);
 
@@ -29,6 +43,10 @@ const Icon = styled.div`
     width: 3.2rem;
     height: 3.2rem;
     color: var(--color-${(props) => props.color}-700);
+    @media (max-width: 768px){
+      width: 1.7rem ;
+      height: 1.7rem ;
+    }
   }
 `;
 
@@ -39,12 +57,22 @@ const Title = styled.h5`
   letter-spacing: 0.4px;
   font-weight: 600;
   color: var(--color-grey-500);
+  @media (max-width: 768px){
+    font-size: 0.7rem ;
+    font-weight: 900;
+
+  }
 `;
 
 const Value = styled.p`
   font-size: 2.4rem;
   line-height: 1;
   font-weight: 500;
+  @media (max-width: 768px){
+    font-size: 1.2rem ;
+    line-height: 0.75;
+    font-weight: 300;
+  }
 `;
 
 function Stat({ icon, title, value, color }) {

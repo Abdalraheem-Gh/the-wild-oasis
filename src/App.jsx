@@ -27,8 +27,8 @@ const queryClient=new QueryClient({
 
 function App() {
   return (
-    <DarkModeProvider >
 
+    <DarkModeProvider >
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false}/>
     <GlobalStyles/>

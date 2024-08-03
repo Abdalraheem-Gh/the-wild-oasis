@@ -14,12 +14,25 @@ const ChartBox = styled.div`
 
   & > *:first-child {
     margin-bottom: 1.6rem;
+    @media (max-width: 768px){
+margin-bottom: 0.75rem ;
+    }
   }
 
   & .recharts-pie-label-text {
     font-weight: 600;
+    @media (max-width: 768px){
+    font-weight: 400;
+    }
   }
-`;
+
+  @media (max-width: 768px){
+    padding: 1.5rem 0.5rem;
+
+    }
+    `
+    
+    ;
 
 const startDataLight = [
   {

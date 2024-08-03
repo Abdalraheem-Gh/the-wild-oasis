@@ -2,6 +2,16 @@ import { HiOutlineBriefcase, HiOutlineCalendar, HiOutlineChartBar } from 'react-
 import Stat from '../dashboard/Stat'
 import { HiOutlineBanknotes } from 'react-icons/hi2';
 import { formatCurrency } from '../../utils/helpers';
+import styled from 'styled-components';
+
+const StyledFlexStat = styled.div`
+@media (max-width: 768px){
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr auto;
+    gap: 1.2rem;
+}
+`
 
 function Stats({bookings,confirmedStays,numDays,cabinCount}) {
     //1- 
@@ -14,13 +24,13 @@ function Stats({bookings,confirmedStays,numDays,cabinCount}) {
     const occupation=confirmedStays.reduce((acc,cur)=>acc+cur.numNights,0)/(numDays*cabinCount)
     //num checked in nights / all available nights(num days *num cabins)
     return (
-        <>
+        <StyledFlexStat>
          <Stat title='Bookings' color='blue' icon={<HiOutlineBriefcase/>} value={numBookings}/>   
          <Stat title='Sales' color='green' icon={<HiOutlineBanknotes/>} value={formatCurrency(sales)}/>   
          <Stat title='Check ins' color='indigo' icon={<HiOutlineCalendar/>} value={checkins}/>   
          <Stat title='Occupancy rate' color='yellow' icon={<HiOutlineChartBar   />} value={Math.round(occupation*100)+'%'}/>   
   
-         </>
+         </StyledFlexStat>
     )
 }
 
