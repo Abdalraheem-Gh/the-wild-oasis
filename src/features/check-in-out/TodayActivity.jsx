@@ -5,6 +5,7 @@ import Row from "../../ui/Row";
 import { useTodayActivity } from "./useTodayActivity";
 import Spinner from "../../ui/Spinner";
 import TodayItem from "./TodayItem";
+import BookingAddBook from "../bookings/BookingAddBook";
 
 const StyledToday = styled.div`
   /* Box */
@@ -45,6 +46,7 @@ function TodayActivity(){
     <StyledToday>
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
+          <BookingAddBook/>
       </Row>
       {!isLoading?
       activities?.length>0?

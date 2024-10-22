@@ -11,6 +11,7 @@ import DataItem from "../../ui/DataItem";
 import { Flag } from "../../ui/Flag";
 
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
+import { useSettings } from "../settings/useSettings";
 
 const StyledBookingDataBox = styled.section`
   /* Box */
@@ -160,7 +161,8 @@ function BookingDataBox({ booking }) {
     guests: { fullName: guestName, email, country, countryFlag, nationalID },
     cabins: { name: cabinName },
   } = booking;
-
+  const {settings}=useSettings()
+  
   return (
     <StyledBookingDataBox>
       <Header>
@@ -211,7 +213,7 @@ function BookingDataBox({ booking }) {
 
             {hasBreakfast &&
               ` (${formatCurrency(cabinPrice)} cabin + ${formatCurrency(
-                extrasPrice
+                (settings?.breakfastPrice)
               )} breakfast)`}
           </DataItem>
 

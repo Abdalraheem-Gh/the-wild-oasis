@@ -16,6 +16,11 @@ import { useCheckout } from "../check-in-out/useCheckout.js";
 import { useDeleteBooking } from "./useDeleteBooking.js";
 import Modal from "../../ui/Modal.jsx";
 import ConfirmDelete from "../../ui/ConfirmDelete.jsx";
+import CreateBookingForm from "./CreateBookingForm.jsx";
+import { useEffect } from "react";
+import { useUpdateBooking } from "./useUpdateBooking.js";
+import { useQueryClient } from "@tanstack/react-query";
+
 const HeadingGroup = styled.div`
   display: flex;
   gap: 2.4rem;
@@ -25,11 +30,19 @@ const HeadingGroup = styled.div`
 function BookingDetail() {
   const navigate=useNavigate()
   const {checkout,isCheckingOut}=useCheckout()
-
   const {booking,isLoading} = useBooking();
+  const {isUpdating}=useUpdateBooking()
   const moveBack = useMoveBack();
   const {deleteBooking,isDeleting}=useDeleteBooking()
-  
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (isUpdating || isDeleting) {
+      queryClient.invalidateQueries(['booking', booking?.id]); // Re-fetch the updated booking data
+    }
+  }, [isUpdating, isDeleting, booking?.id, queryClient]);
+
   if(isLoading)return <Spinner/>
   if (!booking) return <div>Booking data not found.</div>;
   const {status,id:bookingId}=booking;  
@@ -53,12 +66,11 @@ function BookingDetail() {
       <BookingDataBox booking={booking} />
 
       <ButtonGroup>
-      <Button  onClick={()=>navigate(`/checkin/${bookingId}`)} >Check in</Button>   
+      <Button disabled={status==='checked-in'?true:false}  onClick={()=>navigate(`/checkin/${bookingId}`)} >Check in</Button>   
 
       
       {status==='checked-in'  && 
 <Button icon={<HiArrowUpOnSquare/>} onClick={()=>checkout(bookingId)} disabled={isCheckingOut} >Check out</Button>}
-{/* <Button icon={<HiTrash/>} disabled={isDeleting} onClick={()=>handleDeleteBooking(bookingId)}>Delete Booking</Button>         */}
 
 <Modal>
 
@@ -69,6 +81,14 @@ function BookingDetail() {
 <Modal.Window name='delete'>
                       <ConfirmDelete resourceName='booking' disabled={isDeleting} onConfirm={()=>deleteBooking(bookingId,{onSettled:()=>navigate(-1)})} />
                     </Modal.Window>
+
+<Modal.Open opens='update'>
+  <Button variation='danger' >Edit booking</Button>
+</Modal.Open>
+
+<Modal.Window name='update'>
+     <CreateBookingForm bookingToEdit={booking}  />               
+  </Modal.Window>
 </Modal>
 <Button variation="secondary" onClick={moveBack}>
           Back

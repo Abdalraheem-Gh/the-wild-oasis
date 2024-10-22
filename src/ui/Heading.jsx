@@ -40,6 +40,7 @@ text-align: center;
 
 }
 `}
+
 `
 
 export default Heading

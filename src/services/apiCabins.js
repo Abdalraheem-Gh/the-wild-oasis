@@ -1,3 +1,4 @@
+
 import supabase, { supabaseUrl } from "./supabase";
 
 export async  function getCabins(){
@@ -8,7 +9,7 @@ let { data, error } = await supabase
 
 if(error) { console.error(error);
      throw new Error ('Cabins could not be loaded')}
-return data;
+return data.map(cabin => ({ value: cabin.id, label: cabin.name,...cabin }));
 }
 
 export async function createUpdateCabin(newCabin,id){

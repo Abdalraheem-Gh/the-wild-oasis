@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import CheckoutButton from '../check-in-out/CheckoutButton'
 const StyledTodayItem = styled.li`
   display: grid;
-  grid-template-columns: 9rem 2rem 1fr 7rem 9rem;
+  grid-template-columns: 9rem  1fr 7rem 9rem;
   gap: 1.2rem;
   align-items: center;
 
@@ -22,14 +22,18 @@ const StyledTodayItem = styled.li`
 const Guest = styled.div`
   font-weight: 500;
 `;
-
+const SpanForCountryName=styled.span`
+  font-weight: 300;
+  font-size: 1rem;
+  padding-right: 1rem;
+`
 function TodayItem({activity}) {
   const {id,status,guests,numNights}=activity;
   return (
     <StyledTodayItem>
       {status==='unconfirmed'&&<Tag type='green'>Arriving</Tag>}
       {status==='checked-in'&&<Tag type='blue'>Departing</Tag>}
-      <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`}/>
+      {/* {guests.countryFlag?<Flag src={guests.countryFlag} alt={`Flag of ${guests.nationality}`}/>:<SpanForCountryName>From {guests.nationality}</SpanForCountryName>} */}
       <Guest>{guests.fullName}</Guest>
       <div>{numNights} nights</div>
       {status==='unconfirmed'&&<Button size="small" variation='primary' as={Link} to={`/checkin/${id}`} >Check in</Button>}
